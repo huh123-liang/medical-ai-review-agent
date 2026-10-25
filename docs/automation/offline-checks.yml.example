@@ -1,0 +1,31 @@
+name: Offline checks (no model calls)
+
+on:
+  push:
+  pull_request:
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  offline:
+    runs-on: ubuntu-latest
+    timeout-minutes: 20
+    env:
+      PYTEST_DISABLE_PLUGIN_AUTOLOAD: '1'
+      PYTHONDONTWRITEBYTECODE: '1'
+      ANONYMIZED_TELEMETRY: 'False'
+      LANGCHAIN_TRACING_V2: 'false'
+      LANGSMITH_TRACING: 'false'
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Install package and offline test dependencies
+        run: python -m pip install -e '.[test]'
+      - name: Check documentation and publication boundaries
+        run: python tools/check_publication.py
+      - name: Run mocked and structural tests with network blocked
+        run: python tools/run_offline_checks.py

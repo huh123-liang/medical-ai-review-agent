@@ -1,0 +1,33 @@
+# Credentials and personal configuration
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+*.p12
+*.pfx
+credentials*.json
+secrets*.json
+# Runtime, clinical/public raw data, labels, generated outputs
+data/
+reports/
+.runtime/
+*.sqlite*
+*.db*
+# Environments, caches, packaging and test outputs
+.venv/
+.cache/
+__pycache__/
+.pytest_cache/
+*.egg-info/
+build/
+dist/
+.coverage
+htmlcov/
+# Local export/backup areas
+github-release/
+*.zip
+*.tar
+*.gz
+Thumbs.db
+.DS_Store

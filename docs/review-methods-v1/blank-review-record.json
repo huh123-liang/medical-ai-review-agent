@@ -1,0 +1,66 @@
+{
+  "review_schema_version": "research-review-v1.1",
+  "record_status": "blank_template",
+  "review_id": null,
+  "case_reference": null,
+  "group_id": null,
+  "input_bindings": {
+    "case_sha256": null,
+    "rubric_sha256": null,
+    "obligation_manifest_sha256": null,
+    "source_catalog_sha256": null,
+    "candidate_prompt_sha256": null
+  },
+  "provenance": {
+    "material_kind": null,
+    "reviewer_id": null,
+    "reviewer_role": null,
+    "prior_exposure": null,
+    "manifest_status": null,
+    "independent_review_received": false,
+    "started_at": null,
+    "frozen_at": null
+  },
+  "task": {
+    "kind": null,
+    "request_locations": [],
+    "audience": null,
+    "uncertainties": []
+  },
+  "rubric": {
+    "original_text": null,
+    "polarity": null,
+    "operator": null,
+    "interpretation_questions": [],
+    "obligation_rows": []
+  },
+  "claims": [],
+  "source_catalog": [],
+  "claim_source_checks": [],
+  "obligation_findings": [],
+  "coverage": {
+    "provided_obligation_ids_recorded": null,
+    "provided_obligation_ids_expected": null,
+    "claim_inventory_review": "not_independently_verified",
+    "limits": []
+  },
+  "decisions": {
+    "original_model_verdict": null,
+    "criterion_decision": null,
+    "decision_basis": [],
+    "protocol_status": "not_checked",
+    "semantic_support_review": "not_independently_verified",
+    "applicability_review": "not_independently_verified",
+    "review_status": "NeedsReview",
+    "unresolved_items": [],
+    "clinical_release": false,
+    "official_score": null,
+    "benchmark_export_eligible": false
+  },
+  "audit": {
+    "previous_record_sha256": null,
+    "change_reason": null,
+    "original_label_overwritten": false,
+    "historical_verdict_changed": false
+  }
+}

@@ -1,0 +1,151 @@
+{
+  "snapshot_date": "2026-10-25",
+  "verified_at_utc": "2026-10-25T03:53:19.798543+00:00",
+  "scope": "Public export source/contract checks, not medical validation or fresh dependency installation",
+  "offline_checks": {
+    "suites": [
+      {
+        "suite": "core",
+        "expected_tests": 245,
+        "returncode": 0,
+        "counts": {
+          "tests": 245,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 1
+        },
+        "skipped_tests": [
+          "test_real_reviewed_snapshots_have_integrity"
+        ],
+        "passed": true
+      },
+      {
+        "suite": "item_contract",
+        "expected_tests": 71,
+        "returncode": 0,
+        "counts": {
+          "tests": 71,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skipped_tests": [],
+        "passed": true
+      },
+      {
+        "suite": "shadow",
+        "expected_tests": 36,
+        "returncode": 0,
+        "counts": {
+          "tests": 36,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skipped_tests": [],
+        "passed": true
+      },
+      {
+        "suite": "prompt_candidate",
+        "expected_tests": 64,
+        "returncode": 0,
+        "counts": {
+          "tests": 64,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skipped_tests": [],
+        "passed": true
+      },
+      {
+        "suite": "blind_protocol",
+        "expected_tests": 21,
+        "returncode": 0,
+        "counts": {
+          "tests": 21,
+          "failures": 0,
+          "errors": 0,
+          "skipped": 0
+        },
+        "skipped_tests": [],
+        "passed": true
+      }
+    ],
+    "total_tests": 437,
+    "total_passed": 436,
+    "total_skipped": 1,
+    "all_passed": true,
+    "paid_model_calls": 0,
+    "network_guard": "verified"
+  },
+  "local_packaging_verification_attempts": [
+    {
+      "attempt": 1,
+      "passed_policy": false,
+      "total_collected": 437,
+      "note": "Test launcher missing temporary parent directory; optional author snapshot absent."
+    },
+    {
+      "attempt": 2,
+      "passed_policy": false,
+      "total_collected": 437,
+      "note": "Optional author snapshot absent; all other checks passed."
+    },
+    {
+      "attempt": 3,
+      "passed_policy": true,
+      "total_collected": 437,
+      "note": "Explicit optional-snapshot skip; no core changes."
+    }
+  ],
+  "skip_explanation": "One source-snapshot integration check needs unredistributed author artifacts; missing data is not invented. Present but damaged/expired data is not skipped.",
+  "original_project_protected_files": 3836,
+  "original_project_unchanged": true,
+  "original_runtime_source_bytes_unchanged": true,
+  "original_platform_accessed_or_changed": false,
+  "new_paid_model_calls": 0,
+  "publication_modifications": [
+    "Current structured docs",
+    "Safe public export checks",
+    "Portable isolated offline test runner",
+    "Explicit optional jsonschema test dependency",
+    "One exported integration test skips only when unredistributed source snapshot is absent"
+  ],
+  "raw_benchmark_rows_or_physician_labels_distributed": false,
+  "credentials_distributed": false,
+  "source_files_sha256": {
+    "src\\medical_jury\\api.py": "967f0177707560baa46852b1f4ea46d546080490940feb1de96f32e7ccccae53",
+    "src\\medical_jury\\benchmark.py": "70da982438f4fbcf23925cf1f951282ff6e4d19fb570b0756219d61e7f99eb2c",
+    "src\\medical_jury\\budget.py": "e70ac79774ef935d96bf91eac95262c90a44ffdb0411f1475699966735d76f82",
+    "src\\medical_jury\\checklist.py": "de64aeb91390e010a9932025d9fc66fb2bcb508c1032bf11b06358857316543d",
+    "src\\medical_jury\\cli.py": "6a39fefd326f2797d26cc2280da8a31756a113a0af0b419a6cc350f758f2ee93",
+    "src\\medical_jury\\complex_scope.py": "6d607b47ba5567bdbcae796cf7d8be7ae3808776c602f899bd168d8fc4fd6772",
+    "src\\medical_jury\\config.py": "cc0238b4ebbf87649cc890bc1b812691cddd6d9a8b3e856c020094451b3350dc",
+    "src\\medical_jury\\diagnostics.py": "ff7f780151e69eac0f7fd52fc7032fef6e8a23dfb45e21d8ca1c9de625990425",
+    "src\\medical_jury\\domain.py": "9f99f7a7abcf43d33c3ddf5d6f160a2ec8140141cd338a680e67c8a848372944",
+    "src\\medical_jury\\evidence.py": "cfa92f0daeb412ea27058eaf0779a95b8aac7c58d1f4c8cac562ad7bce54d1b0",
+    "src\\medical_jury\\evidence_ids.py": "017e658986d7b5e9af956e089f3d34070188c2a0472a26af7facf2593875c2fc",
+    "src\\medical_jury\\fact_sources.py": "aba3ead08cfdd4b3380a85504b947f6bcd457481d74b2abafc887283bb573e21",
+    "src\\medical_jury\\knowledge.py": "07078cfc61643f84787e3d7ea092be7b8589e16c62962c34694370a736a78243",
+    "src\\medical_jury\\locking.py": "a728463ce641bef51a045ce028a6fe0453eead04cc1704c498c6513e75e6977b",
+    "src\\medical_jury\\provider.py": "5bedadf83dfe802e1dd6c5bce3c0b8f4979289490adf4c53edd1a45e7d6d1d10",
+    "src\\medical_jury\\review_policy.py": "a3be604766c5193da9d789e0b134b435498eae538dcd5a5a803ca29a104ddba5",
+    "src\\medical_jury\\safety.py": "7c00af4a0d6e9c1d17b3ab2dd274761ee306d07745a710c61f084b9be6a3b0cc",
+    "src\\medical_jury\\store.py": "87a52ab8bba3aa721c04e8dbc80c6b792d2f63f4792559f6d50368556c843391",
+    "src\\medical_jury\\stratified.py": "1d3b7469fb2b405268de840159247c31a788b43f11b68a2475fb7a34a490a3cd",
+    "src\\medical_jury\\structured_review.py": "406bb159c78fdba33836299bdcc0a0248b9131328c26cc27fb0c53269513a97b",
+    "src\\medical_jury\\task_scope.py": "64648e54272a00a10bd0835352d79d314240a6511fa9286117056eb87d1c19cf",
+    "src\\medical_jury\\task_spec_v2.py": "5b5e260a8f419bdbbba2a9a27f1898bece9060a8d17bd271eeb32cb09b4d4872",
+    "src\\medical_jury\\task_spec_v3.py": "64c63c725f2d1a7893b3d771c752f6db43a9306a70e63c93c6435232506dad5d",
+    "src\\medical_jury\\workflow.py": "2e4754f068f6c4f8e372c6bd163ec100705368b9e8b3939c7a233deb10680f0c",
+    "src\\medical_jury\\__init__.py": "c54040d1d77363fea19643e9070690d76277d1c3d475d6c2a303d53b4ef3301b"
+  },
+  "contract_sha256": "2d3b840ac1e0aafe54e46f06d265990dda496e60d18855f20c04b9a21c0292e8",
+  "clinical_release": false,
+  "limitations": [
+    "No fresh dependency installation tested locally; existing isolated Python dependencies used.",
+    "Remote CI status must be checked separately.",
+    "Historical replay scripts require author-private archives; not complete historical reproduction."
+  ]
+}

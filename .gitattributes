@@ -1,0 +1,6 @@
+# Preserve exact experiment contract bytes; the sidecar verifies a pinned SHA256.
+* -text
+*.md text eol=lf
+*.yml text eol=lf
+*.yaml text eol=lf
+*.cmd text eol=crlf

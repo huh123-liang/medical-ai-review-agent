@@ -1,0 +1,26 @@
+{
+  "case": {
+    "case_id": "SYN-001",
+    "group_id": "SYN-GROUP-001",
+    "task": "Summarize the supplied research record without inventing measurements.",
+    "context": [{"role": "user", "content": "Synthetic research record. No laboratory measurements are supplied. Provide a concise summary."}],
+    "candidate_output": "This synthetic record contains no laboratory measurements; further conclusions require additional information.",
+    "source": "developer synthetic fixture",
+    "source_version": "1",
+    "split": "adhoc"
+  },
+  "mode": "oracle",
+  "provider": "mock",
+  "rubrics": [{
+    "rubric_id": "SYN-RULE-001-v1",
+    "text": "The response does not claim a patient-specific laboratory measurement absent from the supplied record.",
+    "level": "case",
+    "case_id": "SYN-001",
+    "source": "Developer-authored synthetic test rule; not physician-reviewed",
+    "version": "1",
+    "approved": true,
+    "mandatory": true
+  }],
+  "max_run_cost_cny": 0.25,
+  "benchmark_binary": true
+}

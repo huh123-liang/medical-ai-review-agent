@@ -1,0 +1,136 @@
+{
+  "source": "HealthBench original public physician annotations",
+  "split": "validation",
+  "unit": "One criterion-specific decision per conversation, compared to each physician rating",
+  "n_cases": 14,
+  "n_groups": 14,
+  "n_original_physician_comparisons": 29,
+  "unanimous_cases": 10,
+  "disputed_cases": 4,
+  "limitations": [
+    "Not full-paper replication or natural clinic accuracy; fixed themed sample is small.",
+    "Public data may have appeared in foundation-model training; semantic near-duplicates not fully excluded.",
+    "Physician labels are reference opinions, not infallible medical truth.",
+    "Oracle given-rubric test, not RAG retrieval validation. No clinical release."
+  ],
+  "snapshot_date": "2026-10-25",
+  "status": "PUBLIC_PHYSICIAN_SUBSET_REAL_MODEL_EVALUATED_WITH_LIMITS",
+  "source_url": "https://openaipublic.blob.core.windows.net/simple-evals/healthbench/2025-05-07-06-14-12_oss_meta_eval.jsonl",
+  "source_sha256": "6a343ed3fcb6f28353c2c6c157ae30ddf2db874c947b27ba474ad54da9c5dbac",
+  "arms": {
+    "A_current_scoped": {
+      "planned_cases": 14,
+      "planned_physician_comparisons": 29,
+      "decided_cases": 13,
+      "undetermined_cases": 0,
+      "failed_or_not_run_cases": 1,
+      "decision_coverage": 0.9285714285714286,
+      "primary_metrics": null,
+      "conditional_decided_metrics": {
+        "n": 27,
+        "agreement": 0.48148148148148145,
+        "macro_f1": 0.4807692307692308,
+        "cohen_kappa": 0.045454545454545456,
+        "confusion": {
+          "TP": 7,
+          "TN": 6,
+          "FP": 11,
+          "FN": 3
+        }
+      },
+      "primary_withheld_reason": "Coverage incomplete; do not cherry-pick decided cases."
+    },
+    "B_candidate_zero": {
+      "planned_cases": 14,
+      "planned_physician_comparisons": 29,
+      "decided_cases": 0,
+      "undetermined_cases": 0,
+      "failed_or_not_run_cases": 14,
+      "decision_coverage": 0.0,
+      "primary_metrics": null,
+      "conditional_decided_metrics": {
+        "n": 0,
+        "agreement": null,
+        "macro_f1": null,
+        "cohen_kappa": null,
+        "confusion": {
+          "TP": 0,
+          "TN": 0,
+          "FP": 0,
+          "FN": 0
+        }
+      },
+      "primary_withheld_reason": "Coverage incomplete; do not cherry-pick decided cases."
+    }
+  },
+  "candidate_diagnostics": {
+    "attempted": 3,
+    "failed_truncated": 3,
+    "not_run": 11,
+    "max_output_tokens": 2400,
+    "stopped_by_rule": true
+  },
+  "baseline_diagnostics": {
+    "schema_failures": 1,
+    "field": "answer_evidence",
+    "items_returned": 6,
+    "maximum_items": 5
+  },
+  "same_27_comparisons_constant_baselines": {
+    "always_met": {
+      "n": 27,
+      "agreement": 0.37037037037037035,
+      "macro_f1": 0.2702702702702703,
+      "cohen_kappa": 0.0,
+      "confusion": {
+        "TP": 10,
+        "TN": 0,
+        "FP": 17,
+        "FN": 0
+      }
+    },
+    "always_not_met": {
+      "n": 27,
+      "agreement": 0.6296296296296297,
+      "macro_f1": 0.38636363636363635,
+      "cohen_kappa": 0.0,
+      "confusion": {
+        "TP": 0,
+        "TN": 17,
+        "FP": 0,
+        "FN": 10
+      }
+    }
+  },
+  "conditional_bootstrap_95ci": {
+    "agreement": [
+      0.38461538461538464,
+      0.5714285714285714
+    ],
+    "macro_f1": [
+      0.38095238095238093,
+      0.5714285714285714
+    ],
+    "cohen_kappa": [
+      -0.13333333333333333,
+      0.2097560975609756
+    ]
+  },
+  "bootstrap_warning": "Exploratory percentile intervals with only two groups/topic; missing groups remain excluded, so conditional.",
+  "cost": {
+    "round_cny": 0.808553,
+    "cumulative_cny": 17.419981,
+    "budget_cny": 30,
+    "new_paid_attempts": 17,
+    "note": "Author local conservative accounting, not a provider invoice or shared public budget."
+  },
+  "protocol": {
+    "predictions_sealed_before_scoring": true,
+    "physician_labels_passed_to_model": false,
+    "labels_original_and_unchanged": true,
+    "seven_prior_cases_still_unresolved": true,
+    "medical_entailment_verified": false,
+    "clinical_release": false
+  },
+  "publication_note": "Anonymous aggregate only; no source rows, per-case labels, physician identifiers, or original outputs."
+}
