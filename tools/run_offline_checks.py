@@ -21,6 +21,7 @@ SUITES = [
     ("shadow", "experiments/item-evidence-shadow-v1/test_shadow.py", 36),
     ("prompt_candidate", "experiments/prompt-candidate-v1/test_candidate.py", 64),
     ("blind_protocol", "experiments/physician-blind-v1-r2/test_protocol.py", 21),
+    ("jury_v2", "tests_v2", 411),
 ]
 
 CHILD = r'''

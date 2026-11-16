@@ -1,0 +1,24 @@
+{
+  "case": {
+    "case_id": "DEMO-CASE-1",
+    "group_id": "DEMO-G1",
+    "task": "Assess the fixed AI answer for this chronic-care follow-up.",
+    "split": "adhoc",
+    "context": [
+      {
+        "role": "user",
+        "content": "SYNTHETIC DEMO. 58-year-old with type 2 diabetes on metformin 1 g twice daily. HbA1c 7.1% -> 7.6% -> 8.2% over three visits; eGFR 52. What should change in the plan?"
+      }
+    ],
+    "candidate_output": "**Plan:** Increase metformin to 3 g daily and recheck HbA1c in 3 months.\n- Seek urgent care for vomiting or severe abdominal pain."
+  },
+  "meta": {
+    "diseases": [
+      "Type 2 Diabetes"
+    ],
+    "task_type": "medical_dialogue",
+    "language": "en",
+    "data_source": "synthetic-demo"
+  },
+  "profile_id": "platform-6d-1to5"
+}

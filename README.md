@@ -18,6 +18,7 @@ Medical AI Review Agent / AI Jury：一个独立的医疗大模型输出评估�
 | 如何安装、启动、测试 | [安装与使用](docs/project/SETUP.md) |
 | 哪些论文/数据可参考 | [研究依据](docs/project/RESEARCH.md) |
 | 下一步怎么做 | [路线图](docs/project/ROADMAP.md) |
+| Jury v2 预注册协议与运行步骤 | [协议](docs/project/PROTOCOL-V2.md) · [运行手册](docs/project/JURY-V2-RUNBOOK.md) |
 | 数据、密钥和付费调用限制 | [安全与数据说明](SECURITY.md) |
 
 ## 已实现的主线

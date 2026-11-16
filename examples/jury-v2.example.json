@@ -1,0 +1,12 @@
+{
+  "_comment": "Copy to <project root>/jury-v2.json. No secrets here: the DeepSeek key stays in .env.local (DEEPSEEK_API_KEY). Prices are conservative CNY per million tokens; re-check official prices before paid runs.",
+  "judges": [
+    {"name": "deepseek-pro", "kind": "deepseek", "model": "deepseek-v4-pro", "price_in": 13.2, "price_out": 39.6,
+     "_role": "Primary judge (option 3: single judge + DSPy + dev-fitted threshold)."},
+    {"name": "deepseek-flash", "kind": "deepseek", "model": "deepseek-flash", "price_in": 3.0, "price_out": 12.0,
+     "_role": "Dev ablation control only. Same model family as Pro, so a Pro+Flash jury is NOT a heterogeneous jury."}
+  ],
+  "_optional_later": {"name": "qwen-local", "kind": "openai_compatible", "base_url": "http://127.0.0.1:11434/v1",
+                      "model": "qwen2.5:14b-instruct",
+                      "_note": "Move into 'judges' only if a local Ollama model is available; free, a different model family."}
+}

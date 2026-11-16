@@ -31,3 +31,9 @@ github-release/
 *.gz
 Thumbs.db
 .DS_Store
+# Local jury panel configuration (may name private endpoints)
+jury-v2.json
+
+# Local research use only (MedExpert / BioNLP severity definitions); needed by v3 ordinal tests
+kb/v3/profile-medexpert-severity-5level.json
+kb/v3/profile-bionlp-safety-3level.json

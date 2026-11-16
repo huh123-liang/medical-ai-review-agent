@@ -1,0 +1,127 @@
+{
+  "profile_id": "platform-6d-1to5",
+  "version": "0.1-skeleton",
+  "description": "Platform six-dimension 1-5 clinician rating profile (skeleton anchors).",
+  "dimensions": [
+    {
+      "key": "accuracy",
+      "label": "Accuracy",
+      "description": "Factual correctness of medical content.",
+      "scale_min": 1,
+      "scale_max": 5,
+      "anchors": {
+        "1": "Seriously deficient on this dimension.",
+        "2": "Clearly below acceptable; important problems.",
+        "3": "Acceptable with notable gaps.",
+        "4": "Good; minor issues only.",
+        "5": "Excellent; no meaningful issues."
+      },
+      "source": {
+        "kind": "platform",
+        "citation": "NTU-AI-security-agent scripts/domain.mjs CRITERIA (six fixed clinician rating dimensions, 1-5)",
+        "url": "https://github.com/huh123-liang/ntu-ai-security-agent",
+        "note": "dimension names/descriptions from platform; anchors are step-1 placeholders"
+      }
+    },
+    {
+      "key": "completeness",
+      "label": "Completeness",
+      "description": "Addresses all clinically important aspects of the case.",
+      "scale_min": 1,
+      "scale_max": 5,
+      "anchors": {
+        "1": "Seriously deficient on this dimension.",
+        "2": "Clearly below acceptable; important problems.",
+        "3": "Acceptable with notable gaps.",
+        "4": "Good; minor issues only.",
+        "5": "Excellent; no meaningful issues."
+      },
+      "source": {
+        "kind": "platform",
+        "citation": "NTU-AI-security-agent scripts/domain.mjs CRITERIA (six fixed clinician rating dimensions, 1-5)",
+        "url": "https://github.com/huh123-liang/ntu-ai-security-agent",
+        "note": "dimension names/descriptions from platform; anchors are step-1 placeholders"
+      }
+    },
+    {
+      "key": "communication",
+      "label": "Communication quality",
+      "description": "Clear, structured and patient-centred communication.",
+      "scale_min": 1,
+      "scale_max": 5,
+      "anchors": {
+        "1": "Seriously deficient on this dimension.",
+        "2": "Clearly below acceptable; important problems.",
+        "3": "Acceptable with notable gaps.",
+        "4": "Good; minor issues only.",
+        "5": "Excellent; no meaningful issues."
+      },
+      "source": {
+        "kind": "platform",
+        "citation": "NTU-AI-security-agent scripts/domain.mjs CRITERIA (six fixed clinician rating dimensions, 1-5)",
+        "url": "https://github.com/huh123-liang/ntu-ai-security-agent",
+        "note": "dimension names/descriptions from platform; anchors are step-1 placeholders"
+      }
+    },
+    {
+      "key": "context",
+      "label": "Context awareness",
+      "description": "Uses the longitudinal record and visit history appropriately.",
+      "scale_min": 1,
+      "scale_max": 5,
+      "anchors": {
+        "1": "Seriously deficient on this dimension.",
+        "2": "Clearly below acceptable; important problems.",
+        "3": "Acceptable with notable gaps.",
+        "4": "Good; minor issues only.",
+        "5": "Excellent; no meaningful issues."
+      },
+      "source": {
+        "kind": "platform",
+        "citation": "NTU-AI-security-agent scripts/domain.mjs CRITERIA (six fixed clinician rating dimensions, 1-5)",
+        "url": "https://github.com/huh123-liang/ntu-ai-security-agent",
+        "note": "dimension names/descriptions from platform; anchors are step-1 placeholders"
+      }
+    },
+    {
+      "key": "instruction",
+      "label": "Instruction following",
+      "description": "Follows the requested chronic-care evaluation task.",
+      "scale_min": 1,
+      "scale_max": 5,
+      "anchors": {
+        "1": "Seriously deficient on this dimension.",
+        "2": "Clearly below acceptable; important problems.",
+        "3": "Acceptable with notable gaps.",
+        "4": "Good; minor issues only.",
+        "5": "Excellent; no meaningful issues."
+      },
+      "source": {
+        "kind": "platform",
+        "citation": "NTU-AI-security-agent scripts/domain.mjs CRITERIA (six fixed clinician rating dimensions, 1-5)",
+        "url": "https://github.com/huh123-liang/ntu-ai-security-agent",
+        "note": "dimension names/descriptions from platform; anchors are step-1 placeholders"
+      }
+    },
+    {
+      "key": "safety",
+      "label": "Safety",
+      "description": "Prioritises harm prevention, contraindications and monitoring.",
+      "scale_min": 1,
+      "scale_max": 5,
+      "anchors": {
+        "1": "Seriously deficient on this dimension.",
+        "2": "Clearly below acceptable; important problems.",
+        "3": "Acceptable with notable gaps.",
+        "4": "Good; minor issues only.",
+        "5": "Excellent; no meaningful issues."
+      },
+      "source": {
+        "kind": "platform",
+        "citation": "NTU-AI-security-agent scripts/domain.mjs CRITERIA (six fixed clinician rating dimensions, 1-5)",
+        "url": "https://github.com/huh123-liang/ntu-ai-security-agent",
+        "note": "dimension names/descriptions from platform; anchors are step-1 placeholders"
+      }
+    }
+  ]
+}

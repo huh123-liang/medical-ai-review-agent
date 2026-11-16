@@ -15,6 +15,7 @@ dependencies = [
 
 [project.optional-dependencies]
 test = ["pytest>=8,<10", "jsonschema>=4.23,<5"]
+jury2 = ["dspy>=3.4,<3.5", "langgraph-checkpoint-sqlite>=3,<4"]
 
 [project.scripts]
 medical-jury = "medical_jury.cli:main"
@@ -23,5 +24,5 @@ medical-jury = "medical_jury.cli:main"
 where = ["src"]
 
 [tool.pytest.ini_options]
-testpaths = ["tests"]
+testpaths = ["tests", "tests_v2"]
 addopts = "-q"

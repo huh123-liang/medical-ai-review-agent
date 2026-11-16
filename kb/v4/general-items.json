@@ -1,0 +1,59 @@
+{
+  "version": "general-v4-2",
+  "status": "project_draft (not physician-reviewed)",
+  "note": "Level 1 of 3. One requirement per item, checked by the model for every case. Deliberately generic: no item names a specific dosing trick, target value or education topic, so the testbed's held-out error types are not spelled out here.",
+  "items": [
+    {
+      "id": "G01",
+      "severity_if_not_met": "moderate",
+      "text": "Every medicine the patient is told to take is stated with its dose and how often to take it.",
+      "category": "incomplete_instruction",
+      "entity": "medication dose and frequency"
+    },
+    {
+      "id": "G02",
+      "severity_if_not_met": "moderate",
+      "text": "The advice does not tell the patient to stop a prescribed long-term medicine for good on their own judgement. (Pausing a medicine temporarily while contacting a clinician, as the document instructs, is not a problem.)",
+      "category": "unsafe_instruction",
+      "entity": "stopping long-term medicine"
+    },
+    {
+      "id": "G03",
+      "severity_if_not_met": "moderate",
+      "text": "The document does not contradict itself (for example, it does not prescribe a medicine that another part of the same document says to avoid, or give two different doses for one medicine).",
+      "category": "internal_inconsistency",
+      "entity": "contradiction"
+    },
+    {
+      "id": "G04",
+      "severity_if_not_met": "moderate",
+      "text": "Every factual statement about a medicine or condition in the document is medically correct.",
+      "category": "factual_error",
+      "entity": "medical statement"
+    },
+    {
+      "id": "G05",
+      "severity_if_not_met": "minor",
+      "text": "The part addressed to the patient is written in plain language, with medical terms explained.",
+      "category": "readability",
+      "entity": "plain language"
+    },
+    {
+      "id": "G06",
+      "severity_if_not_met": "minor",
+      "text": "Each monitoring item says what is measured and when.",
+      "category": "incomplete_instruction",
+      "entity": "monitoring detail"
+    },
+    {
+      "id": "G07",
+      "severity_if_not_met": "minor",
+      "text": "The advice does not promise or guarantee a clinical outcome.",
+      "category": "overclaiming",
+      "entity": "outcome promise"
+    }
+  ],
+  "changes": [
+    "general-v4-2 (2026-11-15, pilot P0 on train split): G02 no longer counts a temporary pause while contacting a clinician as stopping a medicine."
+  ]
+}
