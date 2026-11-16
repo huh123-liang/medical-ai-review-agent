@@ -19,9 +19,12 @@ FINDING_CATEGORIES = ('contraindicated_drug', 'dose_error', 'duplicate_therapy',
 SEVERITIES = (SEVERE, MODERATE, MINOR)
 
 
-def load_library(root: Path | str = '.') -> dict:
+DISEASE_DEV = 'kb/v4/disease-items-v4-3-dev.json'     # v4.2-dev: adds sick-day and SGLT2i-in-CKD templates
+
+
+def load_library(root: Path | str = '.', disease: str = DISEASE) -> dict:
     root = Path(root)
-    raw = {k: (root / p).read_bytes() for k, p in (('general', GENERAL), ('disease', DISEASE))}
+    raw = {k: (root / p).read_bytes() for k, p in (('general', GENERAL), ('disease', disease))}
     lib = {k: json.loads(v) for k, v in raw.items()}
     lib['sha256'] = {k: hashlib.sha256(v).hexdigest() for k, v in raw.items()}
     lib['templates'] = {t['id']: t for t in lib['disease']['templates']}
@@ -71,5 +74,22 @@ def applicable(lib: dict, facts: dict, meds: list[dict]) -> tuple[list[dict], li
                                   'issue': 'Type 2 diabetes with cardiovascular disease, but no statin is prescribed.'})
     if 'insulin' in classes:
         case_item('T_HYPO_EDU', '')
+    # ---- templates present only in the v4.2-dev library (absent from disease-v4-2: no change to v4.1) ----
+    if 'T_SICK_DAY' in T:
+        sick = sorted({m['drug'] for m in meds if m['status'] in ACTIVE and m['drug'] in LEXICON
+                       and (m['drug'] == 'metformin' or LEXICON[m['drug']][0] in ('sglt2i', 'acei', 'arb'))})
+        if sick:
+            case_item('T_SICK_DAY', f'Medicines concerned: {", ".join(sick)}.')
+    if 'T_SGLT2I_CKD' in T and {'type_2_diabetes', 'chronic_kidney_disease'} <= cond and not facts.get('pregnant'):
+        egfr = facts.get('egfr')
+        mentioned = any(m['drug'] in LEXICON and LEXICON[m['drug']][0] == 'sglt2i' for m in meds)   # any status
+        if egfr is None:
+            code_findings.append(_cannot('T_SGLT2I_CKD', 'eGFR'))
+        elif egfr >= 20 and not mentioned:
+            t = T['T_SGLT2I_CKD']
+            code_findings.append({'source': 'criteria', 'id': 'T_SGLT2I_CKD', 'category': t['category'],
+                                  'severity': t['severity_if_not_met'], 'entity': t['entity'],
+                                  'issue': f'Type 2 diabetes with CKD and eGFR {egfr:g}, but no SGLT2 inhibitor is '
+                                           'prescribed or discussed.'})
     case_item('T_FOLLOWUP', '')
     return items, code_findings

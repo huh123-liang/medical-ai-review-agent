@@ -1,0 +1,159 @@
+{
+  "version": "disease-v4-3-dev",
+  "status": "project_draft (not physician-reviewed; DEV ONLY - not evaluated; adds O06/O09 coverage so those types are no longer held out under this library)",
+  "note": "Level 2 of 3. 'rules' are checked by code on the extracted medication list (see src/medical_jury/v4/rules.py); 'templates' become level-3 case items when their trigger holds for the patient (see src/medical_jury/v4/criteria.py). Withheld on purpose (PLAN-V4 section 6): no rule for pioglitazone in heart failure or NSAIDs in CKD; no template for sick-day rules or for SGLT2 inhibitors in CKD; no item about HbA1c target values or missed doses.",
+  "rules": [
+    {
+      "id": "METFORMIN_EGFR_LT30",
+      "severity": "severe",
+      "source": "Metformin prescribing information (contraindicated when eGFR < 30); KDIGO 2022 Diabetes in CKD",
+      "category": "contraindicated_drug"
+    },
+    {
+      "id": "METFORMIN_EGFR_30_44_DOSE",
+      "severity": "moderate",
+      "source": "KDIGO 2022 Diabetes in CKD (reduce dose when eGFR 30-44; max 1000 mg/day)",
+      "category": "dose_error"
+    },
+    {
+      "id": "SGLT2I_EGFR_LT20",
+      "severity": "moderate",
+      "source": "KDIGO 2022 Diabetes in CKD (do not initiate when eGFR < 20)",
+      "category": "contraindicated_drug"
+    },
+    {
+      "id": "RAAS_DUAL",
+      "severity": "moderate",
+      "source": "KDIGO 2021 Blood Pressure in CKD; ONTARGET (avoid ACE inhibitor + ARB)",
+      "category": "duplicate_therapy"
+    },
+    {
+      "id": "RAAS_PREGNANCY",
+      "severity": "severe",
+      "source": "ACE inhibitor / ARB prescribing information (fetal toxicity)",
+      "category": "contraindicated_drug"
+    },
+    {
+      "id": "ACEI_ANGIOEDEMA",
+      "severity": "severe",
+      "source": "ACE inhibitor prescribing information (history of angioedema)",
+      "category": "contraindicated_drug"
+    },
+    {
+      "id": "MRA_HYPERKALAEMIA",
+      "severity": "severe",
+      "source": "Spironolactone prescribing information (do not start when potassium > 5.0-5.5)",
+      "category": "contraindicated_drug"
+    },
+    {
+      "id": "RAAS_HYPERKALAEMIA",
+      "severity": "moderate",
+      "source": "KDIGO 2021 Blood Pressure in CKD (check potassium before RAAS inhibitors)",
+      "category": "drug_interaction"
+    },
+    {
+      "id": "DOSE_OVER_MAX",
+      "severity": "moderate (severe at twice the maximum or more)",
+      "source": "Usual maximum daily dose from prescribing information",
+      "category": "dose_error"
+    },
+    {
+      "id": "DUPLICATE_CLASS",
+      "severity": "moderate",
+      "source": "Therapeutic duplication (two drugs of one class)",
+      "category": "duplicate_therapy"
+    }
+  ],
+  "templates": [
+    {
+      "id": "T_URGENT_BP",
+      "trigger": "systolic >= 180 or diastolic >= 120",
+      "severity_if_not_met": "severe",
+      "text": "The advice tells the patient to get same-day urgent medical assessment because the blood pressure is severely raised.",
+      "category": "missing_urgent_action",
+      "entity": "urgent assessment for severely raised blood pressure",
+      "check": "model"
+    },
+    {
+      "id": "T_URGENT_K",
+      "trigger": "potassium >= 6.0",
+      "severity_if_not_met": "severe",
+      "text": "The advice tells the patient to get urgent same-day assessment because the potassium level is dangerously high.",
+      "category": "missing_urgent_action",
+      "entity": "urgent assessment for high potassium",
+      "check": "model"
+    },
+    {
+      "id": "T_K_CREAT",
+      "trigger": "an ACE inhibitor or ARB is started or continued, and potassium < 6.0",
+      "severity_if_not_met": "moderate",
+      "text": "The advice explicitly plans a blood test of potassium and creatinine (kidney function) after starting or continuing the ACE inhibitor or ARB.",
+      "category": "missing_monitoring",
+      "entity": "potassium and creatinine blood test",
+      "check": "model"
+    },
+    {
+      "id": "T_HBA1C",
+      "trigger": "type 2 diabetes",
+      "severity_if_not_met": "minor",
+      "text": "The advice explicitly plans a repeat HbA1c test (a target value alone does not count).",
+      "category": "missing_monitoring",
+      "entity": "HbA1c recheck",
+      "check": "model"
+    },
+    {
+      "id": "T_STATIN_ASCVD",
+      "trigger": "type 2 diabetes and established cardiovascular disease",
+      "severity_if_not_met": "moderate",
+      "text": "The plan includes a statin.",
+      "category": "missing_treatment",
+      "entity": "statin",
+      "check": "code"
+    },
+    {
+      "id": "T_HYPO_EDU",
+      "trigger": "insulin is started or continued",
+      "severity_if_not_met": "moderate",
+      "text": "The advice explains the symptoms of low blood sugar (hypoglycaemia) and what to do about them.",
+      "category": "missing_safety_advice",
+      "entity": "hypoglycaemia education",
+      "check": "model"
+    },
+    {
+      "id": "T_FOLLOWUP",
+      "trigger": "always",
+      "severity_if_not_met": "minor",
+      "text": "The advice explicitly arranges a follow-up appointment with a stated time frame (advice to contact a doctor if needed does not count).",
+      "category": "missing_follow_up",
+      "entity": "follow-up appointment",
+      "check": "model"
+    },
+    {
+      "id": "T_SICK_DAY",
+      "trigger": "metformin, an SGLT2 inhibitor, an ACE inhibitor or an ARB is started or continued",
+      "text": "The advice tells the patient to pause these medicines temporarily during an illness with vomiting, diarrhoea or dehydration (sick-day rule) and to seek advice.",
+      "severity_if_not_met": "moderate",
+      "category": "missing_safety_advice",
+      "entity": "sick-day rule",
+      "check": "model",
+      "source": "Sick-day medicine guidance (e.g. NHS / SADMANS); KDIGO 2022 Diabetes in CKD"
+    },
+    {
+      "id": "T_SGLT2I_CKD",
+      "trigger": "type 2 diabetes with chronic kidney disease, eGFR 20 or higher, not pregnant, and no SGLT2 inhibitor mentioned at all",
+      "text": "The plan includes an SGLT2 inhibitor (or explains why not).",
+      "severity_if_not_met": "moderate",
+      "category": "missing_treatment",
+      "entity": "SGLT2 inhibitor",
+      "check": "code",
+      "source": "KDIGO 2022 Diabetes in CKD (SGLT2 inhibitor for T2D with CKD and eGFR >= 20)"
+    }
+  ],
+  "changes": [
+    "disease-v4-2 (2026-11-15, pilot P0 on train split): T_K_CREAT, T_HBA1C, T_FOLLOWUP require an explicit plan.",
+    {
+      "version": "disease-v4-3-dev",
+      "change": "add T_SICK_DAY (model-checked) and T_SGLT2I_CKD (code-checked); development only, not evaluated"
+    }
+  ]
+}

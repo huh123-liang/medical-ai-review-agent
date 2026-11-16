@@ -57,6 +57,27 @@ def reconcile(findings: list[dict], code_checks: dict) -> list[dict]:
 CHECK_MAX_TOKENS = 2000
 
 
+def merge_findings(rule_out: list[dict], code_findings: list[dict], items: list[dict], chk: dict | None,
+                   opened: list[dict], code_checks: dict) -> tuple[list[dict], list[dict]]:
+    """Step 7 as one pure function (used by ReviewerV4, the LangGraph aggregate node and the record replay):
+    code findings, then criteria answered not_met / cannot_determine, then reconciled open-review findings.
+    `opened` = the check call's other findings with quote_verified already set."""
+    findings = [f for f in rule_out + code_findings if f['category'] != 'cannot_determine']
+    uncertain = [f for f in rule_out + code_findings if f['category'] == 'cannot_determine']
+    if chk is not None:
+        for it in items:
+            res = chk['criteria'][it['id']]
+            if res['status'] == 'not_met':
+                findings.append({'source': 'criterion', 'id': it['id'], 'category': it['category'],
+                                 'severity': it['severity_if_not_met'], 'entity': it['entity'],
+                                 'issue': f"{it['text']} - {res['reason']}", 'quote': res['quote']})
+            elif res['status'] == 'cannot_determine':
+                uncertain.append({'source': 'criterion', 'id': it['id'], 'category': 'cannot_determine',
+                                  'severity': 'moderate', 'entity': it['entity'], 'issue': res['reason']})
+        findings.extend(reconcile(opened, code_checks))
+    return findings, uncertain
+
+
 def triage(findings: list[dict], uncertain: list[dict], unknown: list[str], extraction_problems: list[dict],
            failed: list[str]) -> dict:
     reasons = []
@@ -140,22 +161,12 @@ class ReviewerV4:
                                                        code_checks_of(rule_out, ex['medications'])),
                                CHECK_MAX_TOKENS, job_id, lambda raw: parse_check(raw, items))
         out['calls'].append(call)
-        findings = [f for f in rule_out + code_findings if f['category'] != 'cannot_determine']
-        uncertain = [f for f in rule_out + code_findings if f['category'] == 'cannot_determine']
         failed = [] if chk is not None else [call['failure_code']]
-        if chk is not None:
-            for it in items:
-                res = chk['criteria'][it['id']]
-                if res['status'] == 'not_met':
-                    findings.append({'source': 'criterion', 'id': it['id'], 'category': it['category'],
-                                     'severity': it['severity_if_not_met'], 'entity': it['entity'],
-                                     'issue': f"{it['text']} - {res['reason']}", 'quote': res['quote']})
-                elif res['status'] == 'cannot_determine':
-                    uncertain.append({'source': 'criterion', 'id': it['id'], 'category': 'cannot_determine',
-                                      'severity': 'moderate', 'entity': it['entity'], 'issue': res['reason']})
-            opened = [{**f, 'quote_verified': quote_found(f['quote'], document) if f['quote'] else None}
-                      for f in chk['other_findings']]
-            findings.extend(reconcile(opened, code_checks_of(rule_out, ex['medications'])))
+        opened = [] if chk is None else \
+            [{**f, 'quote_verified': quote_found(f['quote'], document) if f['quote'] else None}
+             for f in chk['other_findings']]
+        findings, uncertain = merge_findings(rule_out, code_findings, items, chk, opened,
+                                             code_checks_of(rule_out, ex['medications']))
         out.update(extraction={**ex, 'problems': problems, 'unknown_active_drugs': unknown},
                    items=[{'id': i['id'], 'level': i['level'], 'text': i['text']} for i in items],
                    criteria_results=chk['criteria'] if chk else None,

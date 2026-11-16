@@ -1,0 +1,440 @@
+{
+  "version": "agent-rules-v4-1",
+  "format": "agent-rules-declarative-1",
+  "description": "The agent's own deterministic rule layer (independent of the testbed's rules). Two rules are deliberately absent (TZD in heart failure, NSAID in CKD). Rules apply only to medicines the document starts or continues. A rule whose patient fact was not found yields CANNOT_DETERMINE. Every rule is unreviewed by a clinician until clinical_signoff says otherwise.",
+  "severity_order": [
+    "severe",
+    "moderate",
+    "minor"
+  ],
+  "active_statuses": [
+    "start",
+    "continue"
+  ],
+  "per_day": {
+    "once daily": 1,
+    "twice daily": 2,
+    "three times daily": 3,
+    "four times daily": 4
+  },
+  "salts": [
+    "hydrochloride",
+    "hcl",
+    "sodium",
+    "potassium",
+    "calcium",
+    "besylate",
+    "maleate",
+    "succinate",
+    "tartrate",
+    "propionyl"
+  ],
+  "synonyms": {
+    "glargine": "insulin glargine",
+    "lantus": "insulin glargine",
+    "basal insulin": "insulin glargine",
+    "insulin glargine u100": "insulin glargine",
+    "hctz": "hydrochlorothiazide",
+    "acetylsalicylic acid": "aspirin"
+  },
+  "lexicon": {
+    "metformin": {
+      "class": "biguanide",
+      "max_daily_mg": 2550
+    },
+    "empagliflozin": {
+      "class": "sglt2i",
+      "max_daily_mg": 25
+    },
+    "dapagliflozin": {
+      "class": "sglt2i",
+      "max_daily_mg": 10
+    },
+    "canagliflozin": {
+      "class": "sglt2i",
+      "max_daily_mg": 300
+    },
+    "linagliptin": {
+      "class": "dpp4i",
+      "max_daily_mg": 5
+    },
+    "sitagliptin": {
+      "class": "dpp4i",
+      "max_daily_mg": 100
+    },
+    "pioglitazone": {
+      "class": "tzd",
+      "max_daily_mg": 45
+    },
+    "glimepiride": {
+      "class": "sulfonylurea",
+      "max_daily_mg": 8
+    },
+    "gliclazide": {
+      "class": "sulfonylurea",
+      "max_daily_mg": null
+    },
+    "glipizide": {
+      "class": "sulfonylurea",
+      "max_daily_mg": null
+    },
+    "insulin glargine": {
+      "class": "insulin",
+      "max_daily_mg": null
+    },
+    "insulin": {
+      "class": "insulin",
+      "max_daily_mg": null
+    },
+    "semaglutide": {
+      "class": "glp1ra",
+      "max_daily_mg": null
+    },
+    "liraglutide": {
+      "class": "glp1ra",
+      "max_daily_mg": null
+    },
+    "lisinopril": {
+      "class": "acei",
+      "max_daily_mg": 80
+    },
+    "ramipril": {
+      "class": "acei",
+      "max_daily_mg": 20
+    },
+    "enalapril": {
+      "class": "acei",
+      "max_daily_mg": 40
+    },
+    "perindopril": {
+      "class": "acei",
+      "max_daily_mg": null
+    },
+    "losartan": {
+      "class": "arb",
+      "max_daily_mg": 100
+    },
+    "valsartan": {
+      "class": "arb",
+      "max_daily_mg": 320
+    },
+    "irbesartan": {
+      "class": "arb",
+      "max_daily_mg": 300
+    },
+    "telmisartan": {
+      "class": "arb",
+      "max_daily_mg": 80
+    },
+    "amlodipine": {
+      "class": "ccb",
+      "max_daily_mg": 10
+    },
+    "nifedipine": {
+      "class": "ccb",
+      "max_daily_mg": null
+    },
+    "labetalol": {
+      "class": "beta_blocker",
+      "max_daily_mg": 2400
+    },
+    "bisoprolol": {
+      "class": "beta_blocker",
+      "max_daily_mg": null
+    },
+    "metoprolol": {
+      "class": "beta_blocker",
+      "max_daily_mg": null
+    },
+    "spironolactone": {
+      "class": "mra",
+      "max_daily_mg": 100
+    },
+    "eplerenone": {
+      "class": "mra",
+      "max_daily_mg": null
+    },
+    "hydrochlorothiazide": {
+      "class": "thiazide",
+      "max_daily_mg": 50
+    },
+    "chlorthalidone": {
+      "class": "thiazide",
+      "max_daily_mg": null
+    },
+    "indapamide": {
+      "class": "thiazide",
+      "max_daily_mg": null
+    },
+    "furosemide": {
+      "class": "loop",
+      "max_daily_mg": null
+    },
+    "atorvastatin": {
+      "class": "statin",
+      "max_daily_mg": 80
+    },
+    "simvastatin": {
+      "class": "statin",
+      "max_daily_mg": 40
+    },
+    "rosuvastatin": {
+      "class": "statin",
+      "max_daily_mg": 40
+    },
+    "pravastatin": {
+      "class": "statin",
+      "max_daily_mg": 80
+    },
+    "ibuprofen": {
+      "class": "nsaid",
+      "max_daily_mg": 3200
+    },
+    "naproxen": {
+      "class": "nsaid",
+      "max_daily_mg": 1250
+    },
+    "diclofenac": {
+      "class": "nsaid",
+      "max_daily_mg": null
+    },
+    "aspirin": {
+      "class": "antiplatelet",
+      "max_daily_mg": null
+    },
+    "clopidogrel": {
+      "class": "antiplatelet",
+      "max_daily_mg": null
+    }
+  },
+  "cannot_determine": {
+    "id": "CANNOT_DETERMINE",
+    "category": "cannot_determine",
+    "severity": "moderate"
+  },
+  "rules": [
+    {
+      "id": "DOSE_OVER_MAX",
+      "kind": "dose_over_max",
+      "category": "dose_error",
+      "severity": "moderate",
+      "severity_if_ratio_at_least": {
+        "ratio": 2,
+        "severity": "severe"
+      },
+      "source": {
+        "guideline": "Usual maximum daily dose from prescribing information",
+        "note": "usual maximum total daily dose per lexicon entry"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "METFORMIN_EGFR",
+      "kind": "threshold",
+      "applies_to": {
+        "drugs": [
+          "metformin"
+        ]
+      },
+      "fact": "egfr",
+      "requires_fact": true,
+      "bands": [
+        {
+          "id": "METFORMIN_EGFR_LT30",
+          "below": 30,
+          "category": "contraindicated_drug",
+          "severity": "severe"
+        },
+        {
+          "id": "METFORMIN_EGFR_30_44_DOSE",
+          "below": 45,
+          "daily_mg_above": 1000,
+          "category": "dose_error",
+          "severity": "moderate"
+        }
+      ],
+      "source": {
+        "guideline": "Metformin prescribing information (contraindicated when eGFR < 30); KDIGO 2022 Diabetes in CKD; KDIGO 2022 Diabetes in CKD (reduce dose when eGFR 30-44; max 1000 mg/day)",
+        "note": "metformin and kidney function"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "SGLT2I_EGFR",
+      "kind": "threshold",
+      "applies_to": {
+        "classes": [
+          "sglt2i"
+        ]
+      },
+      "fact": "egfr",
+      "requires_fact": true,
+      "bands": [
+        {
+          "id": "SGLT2I_EGFR_LT20",
+          "below": 20,
+          "category": "contraindicated_drug",
+          "severity": "moderate"
+        }
+      ],
+      "source": {
+        "guideline": "KDIGO 2022 Diabetes in CKD (do not initiate when eGFR < 20)",
+        "note": "SGLT2 inhibitor initiation and kidney function"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "RAAS_DUAL",
+      "kind": "all_classes_present",
+      "applies_to": {
+        "classes": [
+          "acei",
+          "arb"
+        ]
+      },
+      "category": "duplicate_therapy",
+      "severity": "moderate",
+      "source": {
+        "guideline": "KDIGO 2021 Blood Pressure in CKD; ONTARGET (avoid ACE inhibitor + ARB)",
+        "note": "ACE inhibitor and ARB together"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "RAAS_PREGNANCY",
+      "kind": "flag",
+      "applies_to": {
+        "classes": [
+          "acei",
+          "arb"
+        ]
+      },
+      "fact": "pregnant",
+      "requires_fact": false,
+      "category": "contraindicated_drug",
+      "severity": "severe",
+      "source": {
+        "guideline": "ACE inhibitor / ARB prescribing information (fetal toxicity)",
+        "note": "RAAS blockade in pregnancy"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "ACEI_ANGIOEDEMA",
+      "kind": "flag",
+      "applies_to": {
+        "classes": [
+          "acei"
+        ]
+      },
+      "fact": "acei_angioedema",
+      "requires_fact": false,
+      "category": "contraindicated_drug",
+      "severity": "severe",
+      "source": {
+        "guideline": "ACE inhibitor prescribing information (history of angioedema)",
+        "note": "previous ACE-inhibitor angioedema"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "MRA_POTASSIUM",
+      "kind": "threshold",
+      "applies_to": {
+        "classes": [
+          "mra"
+        ]
+      },
+      "fact": "potassium",
+      "requires_fact": true,
+      "bands": [
+        {
+          "id": "MRA_HYPERKALAEMIA",
+          "at_least": 5.5,
+          "category": "contraindicated_drug",
+          "severity": "severe"
+        }
+      ],
+      "source": {
+        "guideline": "Spironolactone prescribing information (do not start when potassium > 5.0-5.5)",
+        "note": "mineralocorticoid receptor antagonist and potassium"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "RAAS_POTASSIUM",
+      "kind": "threshold",
+      "applies_to": {
+        "classes": [
+          "acei",
+          "arb"
+        ]
+      },
+      "fact": "potassium",
+      "requires_fact": true,
+      "bands": [
+        {
+          "id": "RAAS_HYPERKALAEMIA",
+          "at_least": 5.5,
+          "category": "drug_interaction",
+          "severity": "moderate"
+        }
+      ],
+      "source": {
+        "guideline": "KDIGO 2021 Blood Pressure in CKD (check potassium before RAAS inhibitors)",
+        "note": "RAAS blockade and potassium"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    },
+    {
+      "id": "DUPLICATE_CLASS",
+      "kind": "duplicate_class",
+      "except_classes": [
+        "insulin"
+      ],
+      "category": "duplicate_therapy",
+      "severity": "moderate",
+      "source": {
+        "guideline": "Therapeutic duplication (two drugs of one class)",
+        "note": "two medicines of the same class"
+      },
+      "clinical_signoff": {
+        "status": "not_reviewed",
+        "by": null,
+        "date": null
+      }
+    }
+  ]
+}
